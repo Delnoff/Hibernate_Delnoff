@@ -10,8 +10,8 @@ import java.util.List;
 public class UserDaoHibernateImpl implements UserDao {
 
     private static final String CREATE_TABLE = """
-            CREATE TABLE USERS (
-                user_id integer generated as identity primary key,
+            CREATE TABLE IF NOT EXISTS USERS (
+                user_id int auto_increment primary key,
                 user_name varchar (32),
                 user_lastname varchar (32),
                 user_age integer check (user_age > 0 AND user_age < 100)
@@ -19,7 +19,7 @@ public class UserDaoHibernateImpl implements UserDao {
             """;
 
     private static final String DROP_TABLE = """
-            DROP TABLE USERS
+            DROP TABLE IF EXISTS USERS
             """;
 
     public UserDaoHibernateImpl() {
